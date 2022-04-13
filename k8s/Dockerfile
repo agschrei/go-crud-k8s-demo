@@ -3,7 +3,8 @@ WORKDIR /src
 RUN apt update && apt install -y upx
 COPY . .
 
-RUN CGO_ENABLED=0 go build -o flights cmd/api/*.go
+RUN go mod download
+RUN CGO_ENABLED=0 go build -o flights cmd/api/*.go 
 RUN upx flights
  
 FROM scratch

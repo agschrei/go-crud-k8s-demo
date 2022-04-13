@@ -1,7 +1,9 @@
 package main
 
 import (
+	"fmt"
 	"log"
+	"net/http"
 	"os"
 	"strconv"
 	"time"
@@ -9,9 +11,28 @@ import (
 	"github.com/agschrei/integration-test-sample/internal/config"
 )
 
+const version = "0.1"
+
 func main() {
+	start := time.Now()
+
 	appConfig := setUpConfig()
-	startApplication(appConfig)
+	app := startApplication(appConfig)
+	srv := &http.Server{
+		Addr:         fmt.Sprintf(":%d", appConfig.Port),
+		Handler:      app.routes(),
+		IdleTimeout:  time.Minute,
+		ReadTimeout:  10 * time.Second,
+		WriteTimeout: 30 * time.Second,
+	}
+
+	appConfig.Logger.Printf("Application setup took %dms", time.Since(start).Milliseconds())
+	appConfig.Logger.Printf("Starting server on port %d", appConfig.Port)
+
+	err := srv.ListenAndServe()
+	if err != nil {
+		log.Println(err)
+	}
 }
 
 func setUpConfig() *config.AppConfig {
@@ -23,9 +44,11 @@ func setUpConfig() *config.AppConfig {
 	var applicationPort uint16
 	if val, set := getEnvVariable("APPLICATION_PORT"); set {
 		port, err := strconv.Atoi(val)
-		if err != nil {
+		if err == nil {
 			applicationPort = uint16(port)
 		}
+	} else {
+		applicationPort = 8080
 	}
 
 	isDev := getEnvFlag("ENABLE_DEV")
@@ -53,7 +76,7 @@ func setUpConfig() *config.AppConfig {
 		SslDisabled:       getEnvFlag("DB_SSL_DISABLE"),
 		User:              getEnvVariableOrDefault("DB_USER", ""),
 		Pass:              getEnvVariableOrDefault("DB_PASS", ""),
-		DbName:            getEnvVariableOrDefault("DB_NAME", "uuid-test"),
+		DbName:            getEnvVariableOrDefault("DB_NAME", "demo"),
 		ConnectionTimeout: conTimeout,
 	}
 

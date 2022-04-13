@@ -122,7 +122,7 @@ func TestDsnFromDbConfig(t *testing.T) {
 		},
 	} {
 		t.Run(strconv.Itoa(num), func(t *testing.T) {
-			dsn, err := driver.DsnFromDbConfig(*tc.dbConfig)
+			dsn, err := driver.DsnFromDbConfig(tc.dbConfig)
 			if tc.shouldHaveError && err == nil {
 				t.Errorf("expected error, but got nil: %+v", tc.dbConfig)
 			}

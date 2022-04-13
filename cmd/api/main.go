@@ -71,7 +71,7 @@ func setUpConfig() *config.AppConfig {
 	}
 
 	dbConfig := &config.DbConfig{
-		Hostname:          getEnvVariableOrDefault("DB_HOST", "db"),
+		Hostname:          getEnvVariableOrDefault("DB_HOST", "localhost"),
 		Port:              getEnvVariableOrDefault("DB_PORT", "5432"),
 		SslDisabled:       getEnvFlag("DB_SSL_DISABLE"),
 		User:              getEnvVariableOrDefault("DB_USER", ""),

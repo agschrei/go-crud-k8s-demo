@@ -8,7 +8,7 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/agschrei/integration-test-sample/internal/config"
+	"github.com/agschrei/go-crud-k8s-demo/internal/config"
 )
 
 const version = "0.1"

@@ -1,4 +1,4 @@
-module github.com/agschrei/integration-test-sample
+module github.com/agschrei/go-crud-k8s-demo
 
 go 1.17
 

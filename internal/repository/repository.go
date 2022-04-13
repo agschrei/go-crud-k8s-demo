@@ -5,7 +5,7 @@ import (
 	"database/sql"
 	"time"
 
-	"github.com/agschrei/integration-test-sample/internal/models"
+	"github.com/agschrei/go-crud-k8s-demo/internal/models"
 )
 
 type Repository interface {

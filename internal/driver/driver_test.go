@@ -5,8 +5,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/agschrei/integration-test-sample/internal/config"
-	"github.com/agschrei/integration-test-sample/internal/driver"
+	"github.com/agschrei/go-crud-k8s-demo/internal/config"
+	"github.com/agschrei/go-crud-k8s-demo/internal/driver"
 )
 
 func TestDsnFromDbConfig(t *testing.T) {

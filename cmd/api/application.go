@@ -1,9 +1,9 @@
 package main
 
 import (
-	"github.com/agschrei/integration-test-sample/internal/config"
-	"github.com/agschrei/integration-test-sample/internal/driver"
-	"github.com/agschrei/integration-test-sample/internal/repository"
+	"github.com/agschrei/go-crud-k8s-demo/internal/config"
+	"github.com/agschrei/go-crud-k8s-demo/internal/driver"
+	"github.com/agschrei/go-crud-k8s-demo/internal/repository"
 )
 
 type application struct {

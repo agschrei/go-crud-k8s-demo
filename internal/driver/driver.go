@@ -9,7 +9,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/agschrei/integration-test-sample/internal/config"
+	"github.com/agschrei/go-crud-k8s-demo/internal/config"
 	_ "github.com/jackc/pgconn"
 	_ "github.com/jackc/pgx/v4"
 	_ "github.com/jackc/pgx/v4/stdlib"
